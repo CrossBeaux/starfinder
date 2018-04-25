@@ -697,9 +697,7 @@ class Character(db_engine.Model, ModelBase, HasGuid):
     def alignment(self):
         # alignment = ?
         return " "
-    def user(self):
-        return " "
-
+   
 
     def __str__(self):
         return self.name
