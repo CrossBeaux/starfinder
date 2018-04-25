@@ -175,15 +175,57 @@ def deity_selection(char_id):
 	return render_template('characters/builder/deity.html', **context)
 	
 
-@characters.route('/summary/<uuid:char_id>', methods=['GET'])
-def summary(char_id):
-	character = models.Character.get(char_id)
-	context = {
-		'character': character,
-		'next': 'characters.view_all',
-		'previous': 'characters.deity_selection'
-	}
-	return render_template('characters/builder/summary.html', **context)
+@characters.route('/summary/', methods=['GET'])
+def summary():
+    form = forms.CharacterUpdateForm(request.form)
+    character = models.Character(name="Oracle",
+                            	 description="Violently cute",
+                            	 class_id="1",
+								 alignment="Lawful Good",
+								 #class_name="Mystic",
+								 deity="filler",
+								 home_world="filler",
+								 race="human",
+								 theme="Bounty Hunter",
+								 level="2",
+								 gender="Male",
+								 strength="3",
+								 dexterity="4",
+								 constitution="1",
+								 intelligence="12",
+								 wisdom="12",
+								 charisma="12",
+								 character_skills="1",
+								 character_feats="2",
+								 character_equipment="3",
+								 character_spells="4",
+								 stamina="5",
+								 hit_points="6",
+								 str_mod="7",
+								 dex_mod="8",
+								 con_mod="2",
+								 int_mod="4",
+								 wis_mod="5",
+								 char_mod="6",
+								 misc_mod="7",
+								 armor_bonus="8",
+								 eac="6",
+								 kac="6",
+								 ac_vs_combat="4",
+								 initiative="3",
+								 base_save="5",
+								 fortitude_save="6",
+								 reflex_save="6",
+								 will_save="3",
+								 base_atk_bonus="3",
+								 melee_atk="2",
+								 ranged_atk="3",
+								 thrown_atk="4")
+    context = {
+        'form': form,
+        'character': character
+    }
+    return render_template('characters/builder/summary.html', **context)
 
 
 @characters.route('/delete_character/', methods=['POST'])
